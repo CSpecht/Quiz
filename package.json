@@ -10,20 +10,8 @@
     "Cornelius Specht <corneliusspecht@me.com>",
     "Ingo Trautwein <it013@hdm-stuttgart.de>"
   ],
-  "dependencies": {
-    "body-parser": "~1.14.1",
-    "config": "~1.17.1",
-    "cors": "~2.7.1",
-    "express": "~4.13.3",
-    "json-web-token": "~1.6.3",
-    "jsonwebtoken": "~5.4.1",
-    "mongoose": "~4.2.4",
-    "morgan": "~1.6.1",
-    "request-promise": "~1.0.2"
-  },
-  "devDependencies": {
-    "gulp": "~3.9.0",
-  },
+  "dependencies": {},
+  "devDependencies": {},
   "scripts": {
     "start": "node server",
     "test": "echo \"Error: no test specified\" && exit 1"
