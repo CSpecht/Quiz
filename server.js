@@ -3,6 +3,7 @@ var http = require( 'http' )
 var socketio = require( 'socket.io' )
 var bodyParser = require( 'body-parser' )
 var morgan = require( 'morgan' )
+var mongoose = require( 'mongoose' )
 var debug = require( 'debug' )( 'clicker:server' )
 
 var app = new Express()
@@ -99,6 +100,11 @@ var socketdbg = require( 'debug' )( 'clicker:socket' )
 
 wss.on( 'connection', function( socket ) {
   socket.emit( 'msg', { message: 'Hello, stranger.' } )
+})
+
+mongoose.connect( 'mongodb://localhost:27017/quiz' )
+mongoose.connection.on( 'error', function( error ) {
+  debug( 'mongoose', error.message )
 })
 
 server.listen( port, host, function() {
