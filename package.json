@@ -5,7 +5,7 @@
   "description": "Clicker-04 Quiz",
   "license": "MIT",
   "keywords": [],
-  "main": "server/index.js",
+  "main": "server.js",
   "contributors": [
     "Cornelius Specht <corneliusspecht@me.com>",
     "Ingo Trautwein <it013@hdm-stuttgart.de>"
