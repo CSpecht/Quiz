@@ -1,0 +1,86 @@
+<div>
+    <snap-content snap-opt-tap-to-close="false">
+
+        <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x"></i>
+			</span>
+        </a>
+
+        <div class="fr">
+            <h2>Quiz
+                <small>Create Quiz</small>
+                <a ui-sref="login" class="btn btn-primary btn-lg btn-white" style="margin: 0% 0% 0% 75%">Logout</a>
+            </h2>
+
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div ng-controller="createQuestionCtrl">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><h2>Create Question</h2></div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <div>
+                                    <label class="col-md-12 control-label"></label>
+                                    <div class="col-md-12">
+                                        <input id="question" name="question" type="text" placeholder="write your Question here!"
+                                               class="form-control input-md" ng-model="quiz.question">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="answer" name="answer" type="text" placeholder="answer"
+                                               class="form-control input-md" ng-model="quiz.answer">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="points" name="points" type="text" placeholder="total score"
+                                               class="form-control input-md" ng-model="quiz.points">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="starttime" name="starttime" type="text" placeholder="starttime"
+                                               class="form-control input-md" ng-model="quiz.starttime">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="endtime" name="endtime" type="text" placeholder="endtime"
+                                               class="form-control input-md" ng-model="quiz.endtime">
+                                    </div>
+                                </div>
+
+                                <input type="range" name="minutes" min="1" max="10" value="1" ng-model="quiz.minutes"/>
+                                <!--<div range-slider min="0" max="10000" model-max="quiz.minutes" pin-handle="min"> {{ quiz.minutes }}</div> -->
+
+                                duration time (in min.): <output name="numerisch">{{ quiz.minutes }}</output>
+                                <!-- TODO add Click Function ng-click="" -->
+                                <a ng-click="save()" class="btn btn-primary btn-lg btn-white"
+                                   style="margin:10px 10px 10px 15px">Save</a>
+                                <!-- TODO add editQuiz to ui-sref=""-->
+                                <a class="btn btn-primary btn-lg btn-white"
+                                   style="margin:10px 10px 10px 15px">Cancel</a>
+                            </tr>
+                        </table>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </snap-content>
+    </div>

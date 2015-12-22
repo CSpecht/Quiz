@@ -1,0 +1,60 @@
+<div>
+    <snap-content snap-opt-tap-to-close="false">
+
+        <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x"></i>
+			</span>
+        </a>
+
+        <div class="fr">
+            <h2>Quiz
+                <small>Create Quiz</small>
+                <a ui-sref="login" class="btn btn-primary btn-lg btn-white" style="margin: 0% 0% 0% 75%">Logout</a>
+            </h2>
+
+            <span class="glyphicon glyphicon-education bg-fade"></span>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div ng-controller="createQuizCtrl">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><h2>Create Quiz</h2></div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                                <div>
+                                    <label class="col-md-12 control-label"></label>
+
+                                    <div class="col-md-12">
+                                        <input id="name" name="name" type="text" placeholder="name for the quiz"
+                                               class="form-control input-md" ng-model="quiz.name">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="start" name="start" type="text" placeholder="e.g. 2015,12,12 16:00"
+                                               class="form-control input-md" ng-model="quiz.start"/> {{quiz.start |
+                                        date: "yyyy-MM-dd"}}
+                                        <label class="col-md-12 control-label">eg.: 2015-12-12 16:00 --> 12.12.2015
+                                            16:00</label>
+                                    </div>
+                                </div>
+                                <!-- TODO add Click Function ng-click="" -->
+                                <a ng-click="save()" class="btn btn-primary btn-lg btn-white"
+                                   style="margin:10px 10px 10px 15px">Save</a>
+                                <!-- TODO add editQuiz to ui-sref=""-->
+                                <a class="btn btn-primary btn-lg btn-white"
+                                   style="margin:10px 10px 10px 15px">Cancel</a>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </snap-content>
+</div>

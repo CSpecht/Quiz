@@ -1,0 +1,60 @@
+<div>
+
+    <snap-content snap-opt-tap-to-close="false">
+
+
+        <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x"></i>
+			</span>
+        </a>
+
+        <div class="fr">
+            <h2>Test
+                <small>be carefull awesome stuff here!</small>
+                <a ui-sref="login" class="btn btn-primary btn-lg btn-white">Logout</a>
+            </h2>
+
+
+        </div>
+        <div class="jumbotron">
+            <p class="container">
+
+            <h1>Welcome!</h1>
+
+
+            <p> Hallo das it ein test</p>
+
+            <p ng-repeat="post in posts">
+                {{ post.title }} - upvotes: {{ post.upvotes }}
+            </p>
+
+            <form ng-submit="addPost()">
+                <input type="text" ng-model="title"></input>
+                <input type="text" ng-model="upvotes"></input>
+                <button type="submit">POST</button>
+            </form>
+
+
+
+            <timer countdown="60" interval="1000">
+                <h1>Quiz startet in : {{countdown}} second{{secondsS}} ({{progressBar}}%)</h1>
+            <div class="progress">
+                <div class="progress-bar progress-bar-striped {{displayProgressActive}}" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{progressBar}}%">
+                    <span class="sr-only">45% Complete</span> -->
+                    Remaining time : {{countdown}} second{{secondsS}} ({{progressBar}}%). Activity?
+                    {{displayProgressActive}}
+                    <div class="bar" style="min-width: 2em;width: {{progressBar}}%;"></div>
+                </div>
+            </div>
+
+            </timer>
+
+            <p></p>
+        </div>
+
+
+</div>
+</snap-content>
+</div>

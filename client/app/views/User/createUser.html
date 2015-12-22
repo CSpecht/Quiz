@@ -1,0 +1,166 @@
+<div>
+    <snap-content snap-opt-tap-to-close="false">
+
+        <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x"></i>
+			</span>
+        </a>
+
+        <div class="fr">
+            <h2>User
+                <small>Create</small>
+                <a ui-sref="login" class="btn btn-primary btn-lg btn-white" style="margin: 0% 0% 0% 75%">Logout</a>
+            </h2>
+
+            <span class="glyphicon glyphicon-user bg-fade"></span>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div ng-controller="createUserCtrl">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><h2>Create User</h2></div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr>
+                               <!-- <div>
+                                    <label class="col-md-12 control-label"></label>
+                                    <div class="col-md-12">
+                                        <input id="loginname" name="loginname" type="text" placeholder="loginname"
+                                               class="form-control input-md" ng-model="user.loginname">
+                                    </div>
+                                </div> -->
+                                <div>
+                                    <label class="col-md-12 control-label"></label>
+                                    <div class="col-md-12">
+                                        <input id="firstname" name="firstname" type="text" placeholder="firstname"
+                                               class="form-control input-md" ng-model="user.firstname">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="lastname" name="lastname" type="text" placeholder="lastname"
+                                               class="form-control input-md" ng-model="user.lastname">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="text" name="text" type="text" placeholder="text"
+                                               class="form-control input-md" ng-model="user.text">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="imageurl" name="imageurl" type="text" placeholder="user.imageurl"
+                                               class="form-control input-md" ng-model="user.imageurl">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="status" name="status" type="text" placeholder="status"
+                                               class="form-control input-md" ng-model="user.status">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="quizID" name="quizID" type="text" placeholder="quizID"
+                                               class="form-control input-md" ng-model="user.result.quizID">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="points" name="points" type="text" placeholder="points"
+                                               class="form-control input-md" ng-model="user.result.points">
+                                    </div>
+                                </div>
+
+                                <!-- save(user); -->
+                                <a ng-click="save();" class="btn btn-primary btn-lg btn-white" style="margin:10px 10px 10px 15px">Save</a>
+
+                                <a ui-sref="editUser" class="btn btn-primary btn-lg btn-white"
+                                   style="margin:10px 10px 10px 15px">Cancel</a>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- TODO Formular erstellen -->
+
+                    <!--         <div >
+                                 <form class="form-horizontal" ng-controller="createUserCtrl">
+                                     <fieldset>
+
+                                         &lt;!&ndash; Form Name &ndash;&gt;
+                                         <legend>Create User</legend>
+
+                                         &lt;!&ndash; Text input&ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="firstname">firstname</label>
+
+                                             <div class="col-md-9">
+                                                 <input id="firstname" name="firstname" type="text" placeholder="firstname"
+                                                        class="form-control input-md" ng-model="user.firstname">
+
+                                             </div>
+                                         </div>
+
+                                         &lt;!&ndash; Text input&ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="lastname">lastname</label>
+
+                                             <div class="col-md-9">
+                                                 <input id="lastname" name="lastname" type="text" placeholder="lastname"
+                                                        class="form-control input-md" ng-model="user.lastname">
+
+                                             </div>
+                                         </div>
+
+                                         &lt;!&ndash; Text input&ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="text">text</label>
+
+                                             <div class="col-md-9">
+                                                 <input id="text" name="text" type="text" placeholder="text"
+                                                        class="form-control input-md" ng-model="user.text">
+
+                                             </div>
+                                         </div>
+
+                                         &lt;!&ndash; Text input&ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="imageurl">imageurl</label>
+
+                                             <div class="col-md-9">
+                                                 <input id="imageurl" name="imageurl" type="text" placeholder="imageurl"
+                                                        class="form-control input-md" ng-model="user.imageurl">
+
+                                             </div>
+                                         </div>
+
+                                         &lt;!&ndash; Text input&ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="status">status</label>
+
+                                             <div class="col-md-9">
+                                                 <input id="status" name="status" type="text" placeholder="status"
+                                                        class="form-control input-md" ng-model="user.status">
+                                                 <span class="help-block">Status: 1 (Administrator) Status: 2 (Professor)</span>
+                                             </div>
+                                         </div>
+                                         &lt;!&ndash; Button (Double) &ndash;&gt;
+                                         <div class="form-group">
+                                             <label class="col-md-3 control-label" for="successBtn">Choose</label>
+                                             <div class="col-md-9">
+                                                 <a  class="btn btn-primary btn-lg btn-white" ng-click="save();" >Save</a>
+                                                 <a  class="btn btn-primary btn-lg btn-white" ui-sref="editUser">Cancel</a>
+                                             </div>
+                                         </div>
+                                     </fieldset>
+                                 </form>
+
+                             </div> &ndash;&gt;-->
+                </div>
+            </div>
+        </div>
+    </snap-content>
+</div>

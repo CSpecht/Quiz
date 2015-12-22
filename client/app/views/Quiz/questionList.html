@@ -1,0 +1,94 @@
+<div>
+    <snap-content snap-opt-tap-to-close="false">
+
+        <a href="" snap-toggle="left" ng-click="menuOpen = !menuOpen">
+			<span class="menutoggle">
+				<i ng-hide="menuOpen" class="fa fa-bars fa-2x"></i>
+				<i ng-show="menuOpen" class="fa fa-times fa-2x"></i>
+			</span>
+        </a>
+
+        <div class="fr">
+            <h2>CRUD
+                <small>Edit User</small>
+                <a ui-sref="login" class="btn btn-primary btn-lg btn-white" style="margin: 0% 0% 0% 75%">Logout</a>
+            </h2>
+
+
+
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+
+                <div ng-controller="editUserCtrl">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading" ng-if="showVar"><h2>Show User</h2></div>
+                        <div class="panel-heading" ng-if="editVar"><h2>Edit User</h2></div>
+                        <!-- Table -->
+                        <table class="table">
+                            <tr ng-if="showVar">
+                                <td class="col-md-3">#</td>
+                                <td class="col-md-2">Question</td>
+                                <td class="col-md-2">points</td>
+                                <td class="col-md-2">answer 1</td>
+                                <td class="col-md-2">answer 2</td>
+                                <td class="col-md-1">answer 3</td>
+                                <td class="col-md-1">answer 4</td>
+                            </tr>
+                            <tr ng-repeat="user in user" ng-if="showVar">
+                                <td class="col-md-3">{{ user._id }}</td>
+                                <td class="col-md-2">{{ user.firstname }}</td>
+                                <td class="col-md-2">{{ user.lastname }}</td>
+                                <td class="col-md-2">{{ user.text }}</td>
+                                <td class="col-md-2">{{ user.status }}</td>
+                                <td class="col-md-1"><a ng-click="edit(user);" class="btn btn-primary btn-lg btn-white">edit</a></td>
+
+                            </tr>
+                            <tr>
+                                <div ng-if="editVar">
+                                    <label class="col-md-12 control-label"></label>
+                                    <div class="col-md-12">
+                                        <input id="firstname" name="firstname" type="text" placeholder="firstname"
+                                               class="form-control input-md" ng-model="user.firstname">
+                                    </div>
+                                </div>
+                                <div ng-if="editVar">
+                                    <div class="col-md-12">
+                                        <input id="lastname" name="lastname" type="text" placeholder="lastname"
+                                               class="form-control input-md" ng-model="user.lastname">
+                                    </div>
+                                </div>
+                                <div ng-if="editVar">
+                                    <div class="col-md-12">
+                                        <input id="text" name="text" type="text" placeholder="text"
+                                               class="form-control input-md" ng-model="user.text">
+                                    </div>
+                                </div>
+                                <div ng-if="editVar">
+                                    <div class="col-md-12">
+                                        <input id="imageurl" name="imageurl" type="text" placeholder="user.imageurl"
+                                               class="form-control input-md" ng-model="user.imageurl">
+                                    </div>
+                                </div>
+                                <div ng-if="editVar">
+                                    <div class="col-md-12">
+                                        <input id="status" name="status" type="text" placeholder="status"
+                                               class="form-control input-md" ng-model="user.status">
+                                    </div>
+                                </div>
+                                <a ng-click="save(user);" class="btn btn-primary btn-lg btn-white" ng-if="editVar" style="margin:10px 10px 10px 15px">save</a>
+
+                                <a ng-click="delete(user)" class="btn btn-primary btn-lg btn-white" ng-if="editVar" style="margin:10px 10px 10px 15px">delete</a>
+                            </tr>
+
+                        </table>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </snap-content>
+</div>
