@@ -51,6 +51,8 @@ gulp.task( 'build', [
 ], function() {
   gulp.watch( 'app/styles/**/*.less', [ 'styles' ] )
   gulp.watch( 'app/images/**/*', [ 'images' ] )
+  gulp.watch( 'app/**/*.html', [ 'html' ] )
+  gulp.watch( 'app/**/*.js', [ 'html' ] )
 })
 
 gulp.task( 'default', [ 'build' ], function() {
