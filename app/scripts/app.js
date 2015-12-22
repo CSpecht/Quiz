@@ -14,54 +14,54 @@ angular
 
     .value('nodeServer', '//localhost:9000')
     //TODO Wenn USER eingeloggt && route localhost:8000 wählt umleitung auf Dashboard
-    .run(function($rootScope, $location, authService, $state) {
-        authService.check();
+    .run(function($rootScope, $location) {
+        //authService.check();
 
-        console.log($rootScope);
-        $rootScope.$on("$routeChangeStart", function (event, next, current) {
-            if ($rootScope.loggedInUser == null) {
-                // no logged user, redirect to /login
-                if (next.templateUrl === "views/login.html") {
-                } else {
-                    $location.path("/login");
+        // console.log($rootScope);
+        // $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        //     if ($rootScope.loggedInUser == null) {
+        //         // no logged user, redirect to /login
+        //         if (next.templateUrl === "views/login.html") {
+        //         } else {
+        //             $location.path("/login");
 
-                }
-            }
-        });
+        //         }
+        //     }
+        // });
 
-        $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
-            if (!authService.isLogged && nextRoute.name !== 'login') {
-                console.log(1);
-                event.preventDefault();
-                $state.go('login');
-            }
-        });
+        // $rootScope.$on('$stateChangeStart', function (event, nextRoute) {
+        //     if (!authService.isLogged && nextRoute.name !== 'login') {
+        //         console.log(1);
+        //         event.preventDefault();
+        //         $state.go('login');
+        //     }
+        // });
 
-        $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
-            if (authService.isLogged === true && nextRoute.name === 'login') {
-                console.log(2);
-                event.preventDefault();
-                $state.go('dashboard');
-            }
-        });
+        // $rootScope.$on('$stateChangeSuccess', function (event, nextRoute) {
+        //     if (authService.isLogged === true && nextRoute.name === 'login') {
+        //         console.log(2);
+        //         event.preventDefault();
+        //         $state.go('dashboard');
+        //     }
+        // });
 
 
 
 
     })
 
-    .config(function ($stateProvider, $urlRouterProvider, $localStorageProvider, $httpProvider) {
+    .config(function ($stateProvider, $urlRouterProvider) {
 
        // $urlRouterProvider.when('/dashboard', '/dashboard/overview', '/test');
        // $urlRouterProvider.otherwise('/login');
 
-        $localStorageProvider.setKeyPrefix('hdm.');
+       // $localStorageProvider.setKeyPrefix('hdm.');
 
 
         $urlRouterProvider.when('/dashboard', '/dashboard/overview', '/test');
         $urlRouterProvider.otherwise('/login');
 
-        $httpProvider.interceptors.push('tokenInterceptor');
+       // $httpProvider.interceptors.push('tokenInterceptor');
 
         $stateProvider
             .state('base', {
@@ -73,7 +73,7 @@ angular
                 url: '/login',
                 parent: 'base',
                 templateUrl: 'views/login.html',
-                controller: 'LoginCtrl as vm'
+                controller: 'LoginCtrl'
             })
             .state('test', {
                 url: '/test',
@@ -122,5 +122,5 @@ angular
                 templateUrl: 'views/dashboard/reports.html'
             })
 
-    });
+    })
 

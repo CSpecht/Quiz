@@ -1,92 +1,36 @@
+
+
 'use strict';
 
-angular.module('yapp')
-  .controller('LoginCtrl', function($scope, $location, $http, $state, nodeServer, $rootScope, $localStorage) {
+ angular.module('yapp')
+    .controller('LoginCtrl', function($scope, $location, $http, $state, nodeServer, $rootScope, $localStorage) {
 
-        /*jshint validthis: true */
-        var vm = this;
-        vm.user = {
-            username: 'cs206',
-            password: ''
-        };
-        vm.submit = submit;
+      console.log("TEST")
 
-        function submit() {
-            $http.post(nodeServer + '/auth', vm.user).then(function (res) {
-                // success
-                authService.isLogged = true;
-                authService.user = res.data.user.username;
+      console.log($scope.username);
 
-                $localStorage.token = res.data.token;
-                $localStorage.user = res.data.user.username; // to fetch the user details on refresh
+      $scope.submit = function () {
 
-                $state.go('editor');
-            }, function (err) {
-                console.log(err);
-            });
-
+        var data = {
+          username: $scope.username,
+          password: $scope.password,
         }
 
+        console.log( 'AUTH DATA', data, $scope.login, this )
 
+        $rootScope.loggedInUser = $scope.username;
+        //console.log($scope.login);
+        //console.log($scope.password);
 
-
-
-
-        /*
-
-         $scope.auth = function () {
-
-         $rootScope.loggedInUser = $scope.username;
-         console.log($scope.login);
-         //console.log($scope.password);
-
-         $http({
-         method: 'POST',
-         data:$scope.login,
-         url: nodeServer + '/auth'
-
-         }).then(function successCallback(response) {
-         $state.go('dashboard')
-
-         });
-
-         }
-
-         */
-  });
-
-
-
-/*
-
-function loginCtrl($http, authService, $localStorage, $state) {
-    /*jshint validthis: true
-    var vm = this;
-    vm.user = {
-        username: 'ck115',
-        password: ''
-    };
-    vm.submit = submit;
-
-    function submit() {
-        $http.post('//localhost:9000/auth', vm.user).then(function (res) {
-            // success
-            authService.isLogged = true;
-            authService.user = res.data.user.username;
-
-            $localStorage.token = res.data.token;
-            $localStorage.user = res.data.user.username; // to fetch the user details on refresh
-
-            $state.go('editor');
-        }, function (err) {
-            console.log(err);
+        $http({
+          method: 'POST',
+          data: data,
+          url: nodeServer + '/auth'
+        }).then(function successCallback(response) {
+          console.log( response )
+          $state.go('dashboard')
         });
 
-    }
+      }
 
-
-}
-
-
-})();
-*/
+  });
