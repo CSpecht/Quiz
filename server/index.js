@@ -1,155 +1,106 @@
-/*var express = require('express'),
- app = express(),
- bodyParser = require('body-parser'),
- cors = require('cors'),
- mongoose = require('mongoose'),
- port = process.env.PORT || 9000;
+var Express = require( 'express' )
+var http = require( 'http' )
+var socketio = require( 'socket.io' )
+var bodyParser = require( 'body-parser' )
+var morgan = require( 'morgan' )
+var debug = require( 'debug' )( 'clicker:server' )
 
- mongoose.connect('mongodb://localhost:27018/crud');
+var app = new Express()
+var server = http.createServer( app )
+var wss = socketio( server )
 
+// Don't send the `X-Powered-By` header
+app.set( 'x-powered-by', false )
+// Indent JSON responses
+app.set( 'json spaces', 2 )
 
- app.use(bodyParser.json());
- app.use(cors());
- app.use('/api/users', require('./app/routes/user'));
- app.listen(port);
+app.use( morgan() )
+app.use( bodyParser.json() )
+app.use( bodyParser.urlencoded({
+  extended: true,
+}) )
 
- console.log('Magic happens on port ' + port);
- */
+// Generic Middleware
+app.use( require( './middleware/security-headers' ) )
+app.use( require( './middleware/response-time' ) )
+app.use( require( './middleware/compression' ) )
 
-'use strict';
+// Routes / static files
+app.use( require( './routes' ) )
+app.use( require( './middleware/static' )( __dirname + '/static', {
+  index: [ 'index.html' ]
+}) )
 
-/*
- var express = require('express');
- var bodyParser = require('body-parser');
- var auth = require('./app/routes/auth.js');
- var api = require('./app/routes/api.js');
- var morgan = require('morgan'); //logger modul
- var cors = require('cors');
- var mongoose = require('mongoose');
+// Catch-all
+app.all( '*', function( req, res, next ) {
+  if( req.method === 'HEAD' ) {
+    res.status( 404 ).end()
+  } else if( req.method === 'GET' ) {
+    res.status( 404 )
+    if( !req.xhr ) {
+      res.send( '404 – Not Found' )
+    } else {
+      res.send({
+        status: 404,
+        message: 'Not Found'
+      })
+    }
+  } else {
+    res.status( 405 )
+    if( !req.xhr ) {
+      res.send( '405 – Method Not Allowed' )
+    } else {
+      res.send({
+        status: 405,
+        message: 'Method Not Allowed'
+      })
+    }
+  }
+})
 
+// CSRF error handler
+app.use( function handleCSRF( error, req, res, next ) {
 
- var app = express();
- mongoose.connect('mongodb://localhost:27018/crud');
+  if( error.code !== 'EBADCSRFTOKEN' )
+    return next( error )
 
+  debug( 'EBADCSRFTOKEN' )
+  // TODO: Handle CSRF token errors here
 
+  res.status( 403 )
+  res.send( '403 - Forbidden' )
 
- app.set('port', process.env.port || 9000);
- app.use(cors());
- app.use(bodyParser.json());
- app.use('/api/users', require('./app/routes/user'));
- app.use(morgan('dev'));
- app.use(bodyParser.urlencoded({
- extended: true
- }));
- app.post('/auth', auth.login);
- app.use('/api', api);
+})
 
- // Error Handling
- app.use(function (req, res) {
- res.type('text/plain');
- res.status(404);
- res.send('404 - Not Found');
- });
+// Catch-all error handler
+app.use( function handleError( error, req, res, next ) {
 
- app.listen(app.get('port'), function () {
- console.log('Express ready on https://localhost:' + app.get('port'));
- });
+  if( res.headersSent ) {
+    return next( error )
+  }
 
- var express = require('express');
- var api = require('./app/routes/api.js');
- var mongoose = require('mongoose');
- var cors = require ('cors');
- var config = require('config');
+  res.status( 500 )
 
- var app = express();
- app.set('port', process.env.port || 9000);
- app.use(cors());
- app.use('/api/user', require('./app/routes/user'));
+  if( !req.xhr ) {
+    res.send( '500 – Internal Server Error' )
+  } else {
+    res.send({
+      status: 500,
+      message: 'Internal Server Error'
+    })
+  }
 
+})
 
+var host = process.env[ 'HOST' ]
+var port = process.env[ 'PORT' ] || 9000
 
+var socketdbg = require( 'debug' )( 'clicker:socket' )
 
- var db = mongoose.connection;
- db.on('error', console.error);
- db.on('open', function () {
- var kittySchema = mongoose.Schema({
- name: String
- });
+wss.on( 'connection', function( socket ) {
+  socket.emit( 'msg', { message: 'Hello, stranger.' } )
+})
 
- kittySchema.methods.speak = function () {
- var greeting = this.name
- ? "Meow name is " + this.name
- : "I don't have a name";
- console.log(greeting);
- }
- var Kitten = mongoose.model('Kitten', kittySchema);
-
- var fluffy = new Kitten({ name: 'fluffy'});
- fluffy.speak();
-
- fluffy.save(function (err, fluffy) {
- if (err) return console.error(err);
- fluffy.speak();
- });
-
- Kitten.find(function (err, kittens) {
- if(err) return console.error(err);
- console.log(kittens);
- });
-
-
-
- });
-
- mongoose.connect('mongodb://localhost:27018/quiz');
-
-
- app.listen(app.get('port'), function () {
- console.log('Express ready on https://localhost:' + app.get('port'));
- });
-
- */
-
-
-var express = require('express'),
-    bodyParser = require('body-parser'),
-    auth = require('./app/routes/auth.js'),
-    cors = require('cors'),
-    mongoose = require('mongoose'),
-    morgan = require('morgan'),
-
-    app = express();
-
-app.set('port', process.env.port || 9000);
-app.use(cors());
-
-mongoose.connect('mongodb://localhost:27018/quiz');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(morgan('dev'));
-app.post('/auth', auth.login);
-app.post('/logout', auth.logout);
-
-//TODO implement LOGIN
-app.use(require('./app/middlewares/validateRequest')); // app.use([require('./app/middlewares/validateRequest')]);
-//console.log([require('./app/middlewares/validateRequest')]);
-
-app.use('/api/user', require('./app/routes/user'));
-app.use('/api/quiz', require('./app/routes/quiz'));
-
-
-
-// Error Handling
-app.use(function (req, res) {
-    res.type('text/plain');
-    res.status(404);
-    res.send('404 - Not Found');
-});
-
-
-app.listen(app.get('port'), function () {
- console.log('Express ready on https://localhost:' + app.get('port'));
-});
+server.listen( port, host, function() {
+  debug( 'listening on', this.address() )
+})
