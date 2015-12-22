@@ -1,4 +1,5 @@
 .*
 static/*
+data
 bower_components
 node_modules
