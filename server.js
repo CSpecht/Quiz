@@ -38,7 +38,7 @@ app.all( '*', function( req, res, next ) {
     res.status( 404 ).end()
   } else if( req.method === 'GET' ) {
     res.status( 404 )
-    if( !req.xhr ) {
+    if( !req.is( 'json' ) ) {
       res.send( '404 – Not Found' )
     } else {
       res.send({
@@ -48,7 +48,7 @@ app.all( '*', function( req, res, next ) {
     }
   } else {
     res.status( 405 )
-    if( !req.xhr ) {
+    if( !req.is( 'json' ) ) {
       res.send( '405 – Method Not Allowed' )
     } else {
       res.send({
@@ -65,7 +65,7 @@ app.use( function handleCSRF( error, req, res, next ) {
   if( error.code !== 'EBADCSRFTOKEN' )
     return next( error )
 
-  debug( 'EBADCSRFTOKEN' )
+  debug( 'EBADCSRFTOKEN', error )
   // TODO: Handle CSRF token errors here
 
   res.status( 403 )
@@ -76,13 +76,15 @@ app.use( function handleCSRF( error, req, res, next ) {
 // Catch-all error handler
 app.use( function handleError( error, req, res, next ) {
 
+  debug( error )
+
   if( res.headersSent ) {
     return next( error )
   }
 
   res.status( 500 )
 
-  if( !req.xhr ) {
+  if( !req.is( 'json' ) ) {
     res.send( '500 – Internal Server Error' )
   } else {
     res.send({
@@ -94,7 +96,7 @@ app.use( function handleError( error, req, res, next ) {
 })
 
 var host = process.env[ 'HOST' ]
-var port = process.env[ 'PORT' ] || 8000
+var port = process.env[ 'PORT' ] || 9000
 
 var socketdbg = require( 'debug' )( 'clicker:socket' )
 
