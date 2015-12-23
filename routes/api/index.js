@@ -3,7 +3,13 @@ var Router = Express.Router
 
 var router = new Router()
 
-router.get( '/user', require( './user' ) )
-router.get( '/quiz', require( './quiz' ) )
+router.use( function( req, res, next ) {
+  if( req.session && req.session.user )
+    return next()
+  res.send( 403 ).end()
+})
+
+router.use( '/user', require( './user' ) )
+router.get( '/quiz', require( './quiz' ))
 
 module.exports = router

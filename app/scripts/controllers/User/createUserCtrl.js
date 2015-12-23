@@ -4,7 +4,7 @@ angular.module('yapp')
         console.log($scope.user);
 
         $http({
-            method: 'POST',
+            method: 'PUT',
             data: $scope.user,
             url: nodeServer + '/api/user'
         }).then(function successCallback(response) {

@@ -25,6 +25,7 @@ app.use( bodyParser.urlencoded({
 app.use( require( './middleware/security-headers' ) )
 app.use( require( './middleware/response-time' ) )
 app.use( require( './middleware/compression' ) )
+app.use( require( './middleware/session' ) )
 
 // Routes / static files
 app.use( require( './routes' ) )
