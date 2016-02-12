@@ -14,6 +14,17 @@ user.get( '/', function( req, res, next ) {
   })
 })
 
+// Get all for listing all users
+user.get( '/all', function( req, res, next ) {
+  debug( 'get', req.session.user )
+  User.find( function( error, user ) {
+    if( error ) return next( error )
+    if( !user ) return res.status( 404 ).end()
+    res.send( user )
+  })
+})
+
+
 // Get <user>
 user.get( '/:id', function( req, res, next ) {
   debug( 'get', req.params.id )
@@ -36,7 +47,7 @@ user.get( '/:id', function( req, res, next ) {
 })
 
 // Update
-user.post( '/', function( req, res, next ) {
+user.post( '/:id', function( req, res, next ) {
 
   debug( 'post', req.body )
 
@@ -51,6 +62,7 @@ user.post( '/', function( req, res, next ) {
         if( error ) return next( error )
         res.status( 200 )
         res.send( result )
+        console.log(req.params.id)
       })
     } else {
       res.status( 403 ).end()
@@ -75,13 +87,15 @@ user.put( '/', function( req, res, next ) {
         username: req.body.username,
         firstName: req.body.firstname || '',
         lastName: req.body.lastname || '',
-        roles: req.body.roles || [],
+        roles: req.body.role || [],
       })
+      console.log(req.body.roles)
 
       newUser.save( function( error ) {
         if( error ) return next( error )
         res.status( 201 )
         res.send( newUser )
+
       })
 
     } else {

@@ -12,7 +12,7 @@ angular
 
     ])
 
-    .value('nodeServer', '//localhost:9000')
+    .value('nodeServer', '//localhost:9004')
     //TODO Wenn USER eingeloggt && route localhost:8000 wählt umleitung auf Dashboard
     .run(function($rootScope, $location) {
         //authService.check();
@@ -74,6 +74,12 @@ angular
                 parent: 'base',
                 templateUrl: 'views/login.html',
                 controller: 'LoginCtrl'
+            })
+            .state('logout', {
+                url: '/logout',
+                parent: 'base',
+                templateUrl: 'views/login.html',
+                controller: 'LogoutCtrl'
             })
             .state('test', {
                 url: '/test',

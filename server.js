@@ -97,7 +97,7 @@ app.use( function handleError( error, req, res, next ) {
 })
 
 var host = process.env[ 'HOST' ]
-var port = process.env[ 'PORT' ] || 9000
+var port = process.env[ 'PORT' ] || 9004
 
 var socketdbg = require( 'debug' )( 'clicker:socket' )
 

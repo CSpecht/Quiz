@@ -6,6 +6,7 @@ var User = new Schema({
   username: String,
   firstName: String,
   lastName: String,
+  passwort: String
 })
 
 User.plugin( role )

@@ -31,16 +31,16 @@
                                 <td class="col-md-3">#</td>
                                 <td class="col-md-2">firsname</td>
                                 <td class="col-md-2">lastname</td>
-                                <td class="col-md-2">text</td>
-                                <td class="col-md-2">status</td>
+                                <td class="col-md-2">username</td>
+                                <td class="col-md-2">role</td>
                                 <td class="col-md-1">edit</td>
                             </tr>
                             <tr ng-repeat="user in user" ng-if="showVar">
                                 <td class="col-md-3">{{ user._id }}</td>
-                                <td class="col-md-2">{{ user.firstname }}</td>
-                                <td class="col-md-2">{{ user.lastname }}</td>
-                                <td class="col-md-2">{{ user.text }}</td>
-                                <td class="col-md-2">{{ user.status }}</td>
+                                <td class="col-md-2">{{ user.firstName }}</td>
+                                <td class="col-md-2">{{ user.lastName }}</td>
+                                <td class="col-md-2">{{ user.username }}</td>
+                                <td class="col-md-2">{{ user.roles }}</td>
                                 <td class="col-md-1"><a ng-click="edit(user);" class="btn btn-primary btn-lg btn-white">edit</a></td>
 
                             </tr>
@@ -48,32 +48,28 @@
                                 <div ng-if="editVar">
                                     <label class="col-md-12 control-label"></label>
                                     <div class="col-md-12">
-                                        <input id="firstname" name="firstname" type="text" placeholder="firstname"
+                                        <input id="username" name="username" type="text" placeholder="username"
+                                               class="form-control input-md" ng-model="user.username">
+                                    </div>
+                                </div>
+                                <div ng-if="editVar">
+
+                                    <div class="col-md-12">
+                                        <input id="firstname" name="firstname" type="text" placeholder=""
                                                class="form-control input-md" ng-model="user.firstname">
                                     </div>
                                 </div>
                                 <div ng-if="editVar">
                                     <div class="col-md-12">
-                                        <input id="lastname" name="lastname" type="text" placeholder="lastname"
+                                        <input id="lastname" name="lastname" type="text" placeholder=""
                                                class="form-control input-md" ng-model="user.lastname">
                                     </div>
                                 </div>
+
                                 <div ng-if="editVar">
                                     <div class="col-md-12">
-                                        <input id="text" name="text" type="text" placeholder="text"
-                                               class="form-control input-md" ng-model="user.text">
-                                    </div>
-                                </div>
-                                <div ng-if="editVar">
-                                    <div class="col-md-12">
-                                        <input id="imageurl" name="imageurl" type="text" placeholder="user.imageurl"
-                                               class="form-control input-md" ng-model="user.imageurl">
-                                    </div>
-                                </div>
-                                <div ng-if="editVar">
-                                    <div class="col-md-12">
-                                        <input id="status" name="status" type="text" placeholder="status"
-                                               class="form-control input-md" ng-model="user.status">
+                                        <input id="role" name="role" type="text" placeholder=""
+                                               class="form-control input-md" ng-model="user.roles">
                                     </div>
                                 </div>
                                 <a ng-click="save(user);" class="btn btn-primary btn-lg btn-white" ng-if="editVar" style="margin:10px 10px 10px 15px">save</a>

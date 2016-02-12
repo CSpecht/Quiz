@@ -7,11 +7,17 @@ angular.module('yapp')
 
         $http({
             method: 'GET',
-            url: nodeServer + '/api/user'
+            url: nodeServer + '/api/user/all' // /api/user
         }).then(function successCallback(response) {
             $scope.user = response.data;
 
+
+
+
         });
+
+
+
 
         $scope.delete = function ($user) {
             $scope.showVar = true;
@@ -64,29 +70,35 @@ angular.module('yapp')
                 method: 'GET',
                 url: nodeServer +'/api/user/' + $user._id //$user._id
 
+
             }).then(function successCallback(response) {
                 $state.go('editUser');
                 $tmpUser = response.data;
                 console.log('tmpUser');
                 console.log($tmpUser);
+                console.log($user._id);
+/*
+                var roles = $scope.user.roles
+                var strRoles = roles[0].concat(', '+roles[1])
+                $scope.user.roles = strRoles
+*/
+
             });
 
         };
 
-
-
-
-
-
         $scope.save = function() {
             $scope.editVar = false;
             $scope.showVar = true;
+
+            console.log($scope.user.body)
             $http({
-                method: 'PUT',
+                method: 'POST',
                 data: $scope.user,
                 url: nodeServer +'/api/user/' + $scope.user._id
             }).then(function successCallback(response) {
                $state.reload();
+
             });
         }
     });

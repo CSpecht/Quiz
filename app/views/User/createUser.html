@@ -35,6 +35,13 @@
                                 <div>
                                     <label class="col-md-12 control-label"></label>
                                     <div class="col-md-12">
+                                    <input id="username" name="text" type="username" placeholder="username"
+                                               class="form-control input-md" ng-model="user.username">
+                                    </div>
+                                </div>
+                                <div>
+
+                                    <div class="col-md-12">
                                         <input id="firstname" name="firstname" type="text" placeholder="firstname"
                                                class="form-control input-md" ng-model="user.firstname">
                                     </div>
@@ -47,32 +54,8 @@
                                 </div>
                                 <div>
                                     <div class="col-md-12">
-                                        <input id="text" name="text" type="text" placeholder="text"
-                                               class="form-control input-md" ng-model="user.text">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="col-md-12">
-                                        <input id="imageurl" name="imageurl" type="text" placeholder="user.imageurl"
-                                               class="form-control input-md" ng-model="user.imageurl">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="col-md-12">
-                                        <input id="status" name="status" type="text" placeholder="status"
-                                               class="form-control input-md" ng-model="user.status">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="col-md-12">
-                                        <input id="quizID" name="quizID" type="text" placeholder="quizID"
-                                               class="form-control input-md" ng-model="user.result.quizID">
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="col-md-12">
-                                        <input id="points" name="points" type="text" placeholder="points"
-                                               class="form-control input-md" ng-model="user.result.points">
+                                        <input id="role" name="role" type="text" placeholder="role = admin,professor (Without whitespace!)"
+                                               class="form-control input-md" ng-model="user.role">
                                     </div>
                                 </div>
 

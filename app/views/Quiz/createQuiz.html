@@ -34,6 +34,21 @@
                                     </div>
                                 </div>
                                 <div>
+
+                                    <label class="col-md-12 control-label"></label>
+                                    <hr>
+                                    <div class="col-md-12">
+
+                                      <div class="col-md-12">
+                                        <input id="checkbox" name="check" type="checkbox" class="form-control col-md-1" ng-model="quiz.checkbox"/>
+                                        <label class="col-md-11 control-label">das ist ein Test eigentlich steht hier der Text der Frage</label>
+                                      </div>
+
+                                    </div>
+
+                                    <hr>
+                                </div>
+                                <div>
                                     <div class="col-md-12">
                                         <input id="start" name="start" type="text" placeholder="e.g. 2015,12,12 16:00"
                                                class="form-control input-md" ng-model="quiz.start"/> {{quiz.start |
@@ -41,7 +56,9 @@
                                         <label class="col-md-12 control-label">eg.: 2015-12-12 16:00 --> 12.12.2015
                                             16:00</label>
                                     </div>
+
                                 </div>
+
                                 <!-- TODO add Click Function ng-click="" -->
                                 <a ng-click="save()" class="btn btn-primary btn-lg btn-white"
                                    style="margin:10px 10px 10px 15px">Save</a>
@@ -51,7 +68,7 @@
                             </tr>
                         </table>
                     </div>
-
+                 </div>
 
                 </div>
             </div>

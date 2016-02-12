@@ -9,8 +9,8 @@
         </a>
 
         <div class="fr">
-            <h2>Quiz
-                <small>Create Quiz</small>
+            <h2>question
+                <small>Create question</small>
                 <a ui-sref="login" class="btn btn-primary btn-lg btn-white" style="margin: 0% 0% 0% 75%">Logout</a>
             </h2>
 
@@ -28,42 +28,69 @@
                                     <label class="col-md-12 control-label"></label>
                                     <div class="col-md-12">
                                         <input id="question" name="question" type="text" placeholder="write your Question here!"
-                                               class="form-control input-md" ng-model="quiz.question">
+                                               class="form-control input-md" ng-model="question.question">
                                     </div>
                                 </div>
                                 <div>
                                     <div class="col-md-12">
-                                        <input id="answer" name="answer" type="text" placeholder="answer"
-                                               class="form-control input-md" ng-model="quiz.answer">
+                                        <input id="answer1" name="answer1" type="text" placeholder="answer1"
+                                               class="form-control input-md" ng-model="question.answer1">
                                     </div>
                                 </div>
                                 <div>
                                     <div class="col-md-12">
-                                        <input id="points" name="points" type="text" placeholder="total score"
-                                               class="form-control input-md" ng-model="quiz.points">
+                                        <input id="answer2" name="answer2" type="text" placeholder="answer2"
+                                               class="form-control input-md" ng-model="question.answer2">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="answer3" name="answer3" type="text" placeholder="answer3"
+                                               class="form-control input-md" ng-model="question.answer3">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="answer4" name="answer4" type="text" placeholder="answer4"
+                                               class="form-control input-md" ng-model="question.answer4">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="right" name="right" type="number" min="1" max="4" value="1" placeholder="right Answer"
+                                               class="form-control input-md" ng-model="question.right">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="points" name="points" type="number" min="1" value="1" placeholder="score"
+                                               class="form-control input-md" ng-model="question.points">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="col-md-12">
+                                        <input id="time" name="time" type="number" min="10" value="1" placeholder="answer time in seconds"
+                                               class="form-control input-md" ng-model="question.time">
                                     </div>
                                 </div>
                                 <div>
                                     <div class="col-md-12">
                                         <input id="starttime" name="starttime" type="text" placeholder="starttime"
-                                               class="form-control input-md" ng-model="quiz.starttime">
+                                               class="form-control input-md" ng-model="question.starttime">
                                     </div>
                                 </div>
                                 <div>
                                     <div class="col-md-12">
                                         <input id="endtime" name="endtime" type="text" placeholder="endtime"
-                                               class="form-control input-md" ng-model="quiz.endtime">
+                                               class="form-control input-md" ng-model="question.endtime">
                                     </div>
                                 </div>
 
-                                <input type="range" name="minutes" min="1" max="10" value="1" ng-model="quiz.minutes"/>
-                                <!--<div range-slider min="0" max="10000" model-max="quiz.minutes" pin-handle="min"> {{ quiz.minutes }}</div> -->
 
-                                duration time (in min.): <output name="numerisch">{{ quiz.minutes }}</output>
                                 <!-- TODO add Click Function ng-click="" -->
                                 <a ng-click="save()" class="btn btn-primary btn-lg btn-white"
                                    style="margin:10px 10px 10px 15px">Save</a>
-                                <!-- TODO add editQuiz to ui-sref=""-->
+                                <!-- TODO add editquestion to ui-sref=""-->
                                 <a class="btn btn-primary btn-lg btn-white"
                                    style="margin:10px 10px 10px 15px">Cancel</a>
                             </tr>

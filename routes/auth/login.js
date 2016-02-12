@@ -27,6 +27,21 @@ module.exports = function login( req, res, next ) {
       })
       return
     }
+ //Falls User mit ADMIN Angelegt werden muss:
+   /* var user = new User({
+          username: "cs206",
+          firstName: '',
+          lastName: '',
+          roles: ["admin", "professor"]
+        })
+
+        user.save( function( error ) {
+          if( error ) return next( error )
+          req.session.user = user
+          req.session.save()
+          res.status( 201 ).end()
+        })
+*/
 
     debug( 'getUser', username )
 

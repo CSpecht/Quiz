@@ -7,7 +7,7 @@
             <ul class="snap-ul">
                 <h4>Home</h4>
                 <li ng-class="{active: $state.includes('overview')}"><a ui-sref="overview">HOME</a></li>
-                <li><a ui-sref="login">LOGOUT</a></li>
+                <li><a ui-sref="logout">LOGOUT</a></li>
 
                 <h4>User</h4>
                 <li ng-class="{active: $state.includes('createUser')}"><a ui-sref="createUser">Create User</a></li>
@@ -15,7 +15,10 @@
 
                 <h4>Quiz</h4>
                 <li ng-class="{active: $state.includes('createQuiz')}"><a ui-sref="createQuiz">Create Quiz</a></li>
+                <li ng-class="{active: $state.includes('createQuestion')}"><a ui-sref="createQuestion">Create Question</a></li>
                 <li ng-class="{active: $state.includes('reports')}"><a ui-sref="reports">Reports</a></li>
+
+                <h4>TEST</h4>
 
             </ul>
         </div>
